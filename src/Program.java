@@ -16,11 +16,13 @@ public class Program {
             sc.nextLine(); // consume newline
 
             System.out.println("Enter Machinery State (Worn/Faulty/Critical):");
-            String machineryState = sc.nextLine();
+            String machineryStateInput = sc.nextLine();
 
             auditor.validateArmPrecision(armPrecision);
             auditor.validateWorkerDensity(workerDensity);
-            auditor.validateMachineryState(machineryState);
+
+            MachineryState machineryState =
+                    auditor.validateMachineryState(machineryStateInput);
 
             double risk = auditor.calculateHazardRisk(
                     armPrecision,

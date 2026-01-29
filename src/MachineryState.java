@@ -1,4 +1,5 @@
 enum MachineryState {
+
     WORN(1.3),
     FAULTY(2.0),
     CRITICAL(3.0);

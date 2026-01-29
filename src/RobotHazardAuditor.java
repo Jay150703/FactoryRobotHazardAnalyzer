@@ -20,13 +20,12 @@ class RobotHazardAuditor {
         }
     }
 
-    public void validateMachineryState(String machineryState)
+    public MachineryState validateMachineryState(String machineryState)
             throws RobotSafetyException {
 
-        if (!(machineryState.equals("Worn")
-                || machineryState.equals("Faulty")
-                || machineryState.equals("Critical"))) {
-
+        try {
+            return MachineryState.valueOf(machineryState.toUpperCase());
+        } catch (IllegalArgumentException e) {
             throw new RobotSafetyException(
                     "Error: Unsupported machinery state"
             );
@@ -35,19 +34,9 @@ class RobotHazardAuditor {
 
     public double calculateHazardRisk(double armPrecision,
                                       int workerDensity,
-                                      String machineryState) {
-
-        double machineRiskFactor = 0.0;
-
-        if (machineryState.equals("Worn")) {
-            machineRiskFactor = 1.3;
-        } else if (machineryState.equals("Faulty")) {
-            machineRiskFactor = 2.0;
-        } else if (machineryState.equals("Critical")) {
-            machineRiskFactor = 3.0;
-        }
+                                      MachineryState machineryState) {
 
         return ((1.0 - armPrecision) * 15.0)
-                + (workerDensity * machineRiskFactor);
+                + (workerDensity * machineryState.getRiskFactor());
     }
 }
