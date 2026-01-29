@@ -9,4 +9,14 @@ class RobotHazardAuditor {
             );
         }
     }
+
+    public void validateWorkerDensity(int workerDensity)
+            throws RobotSafetyException {
+
+        if (workerDensity < 1 || workerDensity > 20) {
+            throw new RobotSafetyException(
+                    "Error: Worker density must be 1-20"
+            );
+        }
+    }
 }
