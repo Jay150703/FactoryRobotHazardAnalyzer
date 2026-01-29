@@ -19,4 +19,17 @@ class RobotHazardAuditor {
             );
         }
     }
+
+    public void validateMachineryState(String machineryState)
+            throws RobotSafetyException {
+
+        if (!(machineryState.equals("Worn")
+                || machineryState.equals("Faulty")
+                || machineryState.equals("Critical"))) {
+
+            throw new RobotSafetyException(
+                    "Error: Unsupported machinery state"
+            );
+        }
+    }
 }

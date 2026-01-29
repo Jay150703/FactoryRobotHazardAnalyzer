@@ -13,11 +13,16 @@ public class Program {
 
             System.out.println("Enter Worker Density (1 - 20):");
             int workerDensity = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            System.out.println("Enter Machinery State (Worn/Faulty/Critical):");
+            String machineryState = sc.nextLine();
 
             auditor.validateArmPrecision(armPrecision);
             auditor.validateWorkerDensity(workerDensity);
+            auditor.validateMachineryState(machineryState);
 
-            System.out.println("Inputs accepted.");
+            System.out.println("All inputs accepted.");
 
         } catch (RobotSafetyException e) {
             System.out.println(e.getMessage());
