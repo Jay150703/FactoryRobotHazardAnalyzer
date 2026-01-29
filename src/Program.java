@@ -22,7 +22,13 @@ public class Program {
             auditor.validateWorkerDensity(workerDensity);
             auditor.validateMachineryState(machineryState);
 
-            System.out.println("All inputs accepted.");
+            double risk = auditor.calculateHazardRisk(
+                    armPrecision,
+                    workerDensity,
+                    machineryState
+            );
+
+            System.out.println("Robot Hazard Risk Score: " + risk);
 
         } catch (RobotSafetyException e) {
             System.out.println(e.getMessage());
